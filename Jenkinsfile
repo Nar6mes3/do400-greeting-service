@@ -22,6 +22,13 @@ pipeline{
             }
         }
 
-        // Add the "Deploy" stage here
+        stage('Deploy') {
+          steps {
+              sh '''
+                  oc project muwtnp-greetings
+                  oc start-build greeting-service --follow --wait
+              '''
+          }
+      }
     }
 }
